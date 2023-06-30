@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "MSQaaDpK+cCUaArMEZ6Xtab3S9kAOS6JfmrWFja1bizYtndv3Fkydp0Ja6M7101sP+QbU+40rYZDYF1DlSku7g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dartw\\RiderProjects\\Quest Game\\Quest Game\\Quest Game.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dartw\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.1\\microsoft.netcore.app.runtime.win-x64.7.0.1.nupkg.sha512",
+    "C:\\Users\\dartw\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.1.nupkg.sha512",
+    "C:\\Users\\dartw\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.1\\microsoft.aspnetcore.app.runtime.win-x64.7.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
