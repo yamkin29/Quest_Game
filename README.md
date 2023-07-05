@@ -1,3 +1,2 @@
 # Quest_Game
-Текстовые квесты это разновидность компьютерных игр, где взаимодействие с игроком происходит с помощью текстовой информации.
-Этот квест повествует о небольшом космическом приключении. Приятной игры!
+Text quests are a kind of computer games where interaction with the player takes place using text information. This quest tells about a small space adventure. Have a nice game!
