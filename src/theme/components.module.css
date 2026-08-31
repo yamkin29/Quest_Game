@@ -1,0 +1,49 @@
+.actionIcon {
+  --ai-bg: var(--app-surface-floating);
+  --ai-hover: var(--app-accent-soft);
+  --ai-color: var(--app-text-primary);
+  --ai-hover-color: var(--color-ink-black);
+
+  border-color: var(--app-border-default);
+}
+
+.button {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-body-lg);
+}
+
+.button[data-variant="filled"] {
+  --button-bg: var(--app-accent);
+  --button-hover: var(--app-accent-hover);
+  --button-color: var(--color-ink-black);
+}
+
+.paper {
+  --paper-border-color: var(--app-border-default);
+}
+
+.segmentedRoot {
+  border: thin solid var(--app-border-default);
+  background: var(--app-surface-canvas);
+}
+
+.segmentedIndicator {
+  background: var(--app-accent);
+  box-shadow: var(--shadow-subtle);
+}
+
+.segmentedLabel {
+  color: var(--app-text-secondary);
+}
+
+.segmentedLabel[data-active] {
+  color: var(--color-ink-black);
+}
+
+.textInput {
+  --input-bd: var(--app-border-strong);
+  --input-bd-focus: var(--app-accent-focus);
+  --input-bg: var(--app-surface-floating);
+  --input-color: var(--app-text-primary);
+  --input-placeholder-color: var(--app-text-muted);
+}

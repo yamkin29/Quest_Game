@@ -1,0 +1,11 @@
+.root {
+  min-height: 100dvh;
+  background: var(--app-surface-canvas);
+  color: var(--app-text-primary);
+}
+
+.main {
+  display: grid;
+  align-items: center;
+  background: var(--app-surface-canvas);
+}

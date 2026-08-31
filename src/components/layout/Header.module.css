@@ -1,0 +1,43 @@
+.header {
+  background: var(--app-surface-card);
+  border-color: var(--app-border-default);
+}
+
+.container {
+  height: 100%;
+  padding-inline: var(--spacing-16);
+}
+
+.brand,
+.settings {
+  min-width: 0;
+}
+
+.brand {
+  flex-shrink: 1;
+}
+
+.settings {
+  flex-shrink: 0;
+}
+
+.icon {
+  flex: 0 0 auto;
+}
+
+.icon svg {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
+
+.title {
+  overflow: hidden;
+  color: var(--app-text-primary);
+  font-family: var(--font-roobert);
+  font-size: var(--text-subheading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-subheading);
+  letter-spacing: var(--tracking-subheading);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

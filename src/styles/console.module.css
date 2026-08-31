@@ -1,0 +1,101 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: clamp(
+    calc(var(--spacing-160) * 2),
+    calc(100dvh - var(--spacing-160) - var(--spacing-64)),
+    calc(var(--spacing-160) * 4)
+  );
+  overflow: hidden;
+  background: var(--app-surface-card);
+  border-color: var(--app-border-default);
+}
+
+.windowHeader {
+  flex: 0 0 auto;
+  min-height: var(--spacing-48);
+  padding-inline: var(--spacing-16);
+}
+
+.windowTitle {
+  overflow: hidden;
+  margin: 0;
+  color: var(--app-text-primary);
+  font-family: var(--font-roobert);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-body-lg);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.indicator {
+  width: var(--spacing-8);
+  height: var(--spacing-8);
+  border-radius: var(--radius-full);
+  background: var(--app-text-muted);
+}
+
+.indicator[data-tone="soft"] {
+  background: var(--app-accent-soft);
+}
+
+.indicator[data-tone="signal"] {
+  background: var(--app-accent);
+}
+
+.output {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.viewport {
+  overscroll-behavior: contain;
+}
+
+.message {
+  margin: 0;
+  color: var(--app-text-secondary);
+  font-family: var(--font-inter);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  letter-spacing: var(--tracking-body-lg);
+  white-space: pre-wrap;
+}
+
+.message[data-kind="choice"] {
+  color: var(--app-accent);
+}
+
+.message[data-kind="input"] {
+  color: var(--app-text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.message[data-kind="system"] {
+  color: var(--app-text-muted);
+  font-style: italic;
+}
+
+.message[data-kind="error"] {
+  color: var(--app-accent-hover);
+  font-weight: var(--font-weight-semibold);
+}
+
+.form {
+  flex: 0 0 auto;
+  padding: var(--spacing-16);
+  background: light-dark(var(--surface-floating-preview), var(--color-soot));
+}
+
+.input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.actionButton {
+  flex: 0 0 auto;
+}

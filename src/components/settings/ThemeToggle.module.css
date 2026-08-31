@@ -1,0 +1,8 @@
+.root {
+  flex: 0 0 auto;
+}
+
+.root svg {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+}
