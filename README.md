@@ -88,15 +88,17 @@ npm run preview
 ```text
 Quest_Game/
 ├── src/
-│   ├── app/            # React application shell
-│   ├── components/     # Reusable layout components
-│   ├── features/game/  # Pure engine, React adapter, terminal UI, and tests
-│   ├── hooks/          # Persistent language state
-│   ├── i18n/           # Typed RU/EN dictionaries and translator
-│   ├── providers/      # Mantine provider composition
-│   ├── theme/          # Theme adapter and design tokens
-│   ├── styles/         # Global browser styles
-│   └── main.tsx        # Browser entry point
+│   ├── app/                    # Entrypoint, providers, global styles, theme, tests
+│   ├── pages/game/             # Complete game screen
+│   ├── widgets/
+│   │   ├── app-header/         # Header composition
+│   │   ├── app-footer/         # Footer composition
+│   │   └── game-console/       # Interactive terminal UI
+│   ├── features/
+│   │   ├── change-language/    # Persistent locale selection
+│   │   └── toggle-theme/       # Light and dark theme interaction
+│   ├── entities/game/          # Game state, engine, React adapter, and tests
+│   └── shared/i18n/            # Typed RU/EN dictionaries and translator
 ├── docs/               # Implementation plan and design system
 ├── index.html
 ├── package.json
@@ -105,6 +107,11 @@ Quest_Game/
 ```
 
 ## Architecture
+
+The source tree follows a pragmatic Feature-Sliced Design structure. Dependencies
+flow downward through `app → pages → widgets → features → entities → shared`.
+Slices expose a small public API through `index.ts`; their internal modules use
+relative imports and remain hidden from higher layers.
 
 The web game is driven by one immutable, explicitly typed state object:
 
@@ -117,18 +124,19 @@ interface GameState {
   hasKey: boolean;
   hasModule: boolean;
   messages: readonly GameMessage[];
+  nextMessageId: number;
 }
 ```
 
-`submitCommand(state, command)` returns a new state instead of mutating its input. `getScene(state)` describes the available actions for the current room, including inventory-dependent options. The engine imports neither React nor browser APIs, so it stays independently testable.
+The `entities/game` slice owns the domain model. `submitCommand(state, command)` returns a new state instead of mutating its input, while `getScene(state)` describes the available actions for the current room, including inventory-dependent options. These transition modules import neither React nor browser APIs, so they stay independently testable.
 
-The `useGame` hook connects this engine to React through `useReducer`. The terminal components only render the current state and dispatch typed `submit` or `restart` actions, keeping gameplay rules outside the UI.
+The slice's `useGame` hook connects the engine to React through `useReducer`. The `widgets/game-console` components only render the current state and dispatch typed `submit` or `restart` actions, keeping gameplay rules outside the UI.
 
-Messages contain typed translation keys rather than rendered strings. Both dictionaries must satisfy the complete key union, so TypeScript reports missing or unknown translations. Rendering translates each key against the current locale, allowing the entire existing history to switch languages without resetting the game.
+Messages contain typed translation keys rather than rendered strings. The `shared/i18n` dictionaries must satisfy the complete key union, so TypeScript reports missing or unknown translations. Rendering translates each key against the current locale, allowing the entire existing history to switch languages without resetting the game.
 
-The selected locale is stored under the versioned `quest-game.locale.v1` key and synchronized with the document's `lang` attribute. English browser locales default to English; Russian and unsupported locales default to Russian.
+The `features/change-language` slice stores the selected locale under the versioned `quest-game.locale.v1` key and synchronizes it with the document's `lang` attribute. English browser locales default to English; Russian and unsupported locales default to Russian.
 
-Mantine `AppShell` provides fixed Header and Footer offsets around the central Main region. `App` owns the language state and passes typed props to the layout components, keeping them independent from browser storage.
+Mantine `AppShell` provides fixed Header and Footer offsets around the central Main region. `GamePage` owns the language and game adapters and composes the header, footer, and game-console widgets through their public APIs.
 
 The central terminal uses a native HTML form for keyboard submission and a Mantine `ScrollArea` for history. New messages are exposed as an accessible live log, the view follows the latest output, and focus returns to the next relevant control after every action.
 
