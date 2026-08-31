@@ -9,6 +9,8 @@ import { IconMoonStars, IconSun } from "@tabler/icons-react";
 import type { Translator } from "@/shared/i18n";
 import classes from "./ThemeToggle.module.css";
 
+const tooltipClassNames = { tooltip: classes.tooltip } as const;
+
 interface ThemeToggleProps {
   readonly t: Translator;
 }
@@ -27,9 +29,14 @@ export function ThemeToggle({ t }: ThemeToggleProps) {
 
   return (
     <Tooltip
+      arrowSize={4}
+      classNames={tooltipClassNames}
       events={{ focus: true, hover: true, touch: false }}
       label={label}
+      multiline
+      openDelay={300}
       position="bottom"
+      transitionProps={{ duration: 120 }}
       withArrow
     >
       <ActionIcon

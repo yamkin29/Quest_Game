@@ -12,3 +12,26 @@
   width: var(--spacing-16);
   height: var(--spacing-16);
 }
+
+.tooltip {
+  --tooltip-bg: color-mix(
+    in srgb,
+    var(--app-surface-inverted) 94%,
+    transparent
+  );
+  --tooltip-color: light-dark(
+    var(--color-terminal-light),
+    var(--color-terminal-ink)
+  );
+
+  max-width: 152px;
+  padding: 5px var(--spacing-8);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 18%, transparent);
+  font-family: var(--font-interface);
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
