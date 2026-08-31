@@ -1,4 +1,5 @@
 import { Button, Group, TextInput } from "@mantine/core";
+import { IconTerminal2 } from "@tabler/icons-react";
 import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -66,11 +67,18 @@ export function CommandForm({
 
   return (
     <form className={classes.form} onSubmit={handleSubmit}>
-      <Group align="flex-end" gap="var(--spacing-8)" wrap="nowrap">
+      <Group
+        align="center"
+        className={classes.commandRow}
+        gap="var(--spacing-8)"
+        wrap="wrap"
+      >
         <TextInput
           aria-label={t("console.inputLabel")}
           className={classes.input}
           disabled={isFinished}
+          leftSection={<IconTerminal2 aria-hidden="true" />}
+          leftSectionPointerEvents="none"
           onChange={(event) => setCommand(event.currentTarget.value)}
           placeholder={t(placeholderKeys[inputMode])}
           ref={inputRef}

@@ -1,6 +1,8 @@
 .footer {
-  background: var(--app-surface-card);
+  z-index: 20;
+  background: color-mix(in srgb, var(--app-surface-card) 88%, transparent);
   border-color: var(--app-border-default);
+  backdrop-filter: blur(18px) saturate(125%);
 }
 
 .container {
@@ -11,6 +13,28 @@
 .text {
   margin: 0;
   color: var(--app-text-muted);
+  font-family: var(--font-terminal);
   font-size: var(--text-caption);
   line-height: var(--leading-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.text:first-child::before {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: var(--spacing-8);
+  border-radius: var(--radius-full);
+  background: var(--app-status-won);
+  box-shadow: 0 0 10px
+    color-mix(in srgb, var(--app-status-won) 60%, transparent);
+  content: "";
+  vertical-align: 1px;
+}
+
+@media (max-width: 35em) {
+  .text:first-child {
+    display: none;
+  }
 }

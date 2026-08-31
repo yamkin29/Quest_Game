@@ -1,6 +1,9 @@
 .header {
-  background: var(--app-surface-card);
+  z-index: 20;
+  background: color-mix(in srgb, var(--app-surface-card) 88%, transparent);
   border-color: var(--app-border-default);
+  backdrop-filter: blur(18px) saturate(125%);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--app-accent) 8%, transparent);
 }
 
 .container {
@@ -15,6 +18,15 @@
 
 .brand {
   flex-shrink: 1;
+  position: relative;
+}
+
+.brand::after {
+  width: var(--spacing-32);
+  height: 1px;
+  margin-left: var(--spacing-4);
+  background: linear-gradient(90deg, var(--app-accent), transparent);
+  content: "";
 }
 
 .settings {
@@ -23,6 +35,10 @@
 
 .icon {
   flex: 0 0 auto;
+  color: var(--app-accent);
+  border-color: color-mix(in srgb, var(--app-accent) 44%, transparent);
+  background: var(--app-accent-soft);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--app-accent) 18%, transparent);
 }
 
 .icon svg {
@@ -33,11 +49,54 @@
 .title {
   overflow: hidden;
   color: var(--app-text-primary);
-  font-family: var(--font-roobert);
-  font-size: var(--text-subheading);
+  font-family: var(--font-display);
+  font-size: 16px;
   font-weight: var(--font-weight-semibold);
   line-height: var(--leading-subheading);
-  letter-spacing: var(--tracking-subheading);
+  letter-spacing: 0.08em;
   text-overflow: ellipsis;
+  text-transform: uppercase;
   white-space: nowrap;
+}
+
+.status {
+  --badge-bg: color-mix(in srgb, var(--status-color) 12%, transparent);
+  --badge-color: var(--status-color);
+
+  border: 1px solid color-mix(in srgb, var(--status-color) 34%, transparent);
+  font-family: var(--font-terminal);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.status[data-status="playing"] {
+  --status-color: var(--app-status-playing);
+}
+
+.status[data-status="won"] {
+  --status-color: var(--app-status-won);
+}
+
+.status[data-status="dead"] {
+  --status-color: var(--app-status-dead);
+}
+
+@media (max-width: 35em) {
+  .brand::after {
+    display: none;
+  }
+}
+
+@media (max-width: 27em) {
+  .title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }

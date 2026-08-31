@@ -1,11 +1,83 @@
 .root {
+  position: relative;
   min-height: 100dvh;
-  background: var(--app-surface-canvas);
+  overflow: hidden;
+  background-color: var(--app-surface-canvas);
+  background-image:
+    radial-gradient(
+      circle at 18% 14%,
+      var(--app-terminal-glow),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 86% 82%,
+      color-mix(in srgb, var(--app-accent-soft) 62%, transparent),
+      transparent 24rem
+    ),
+    linear-gradient(var(--app-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--app-grid-line) 1px, transparent 1px);
+  background-position: center;
+  background-size:
+    auto,
+    auto,
+    var(--instrument-grid-size) var(--instrument-grid-size),
+    var(--instrument-grid-size) var(--instrument-grid-size);
   color: var(--app-text-primary);
+  transition: background-color 240ms ease;
+}
+
+.root::before,
+.root::after {
+  position: fixed;
+  z-index: 0;
+  width: 180px;
+  height: 180px;
+  pointer-events: none;
+  content: "";
+  opacity: 0.36;
+}
+
+.root::before {
+  top: 92px;
+  left: 20px;
+  border-top: 1px solid var(--app-border-strong);
+  border-left: 1px solid var(--app-border-strong);
+}
+
+.root::after {
+  right: 20px;
+  bottom: 84px;
+  border-right: 1px solid var(--app-border-strong);
+  border-bottom: 1px solid var(--app-border-strong);
+}
+
+.root[data-status="won"] {
+  --app-terminal-glow: color-mix(
+    in srgb,
+    var(--app-status-won) 20%,
+    transparent
+  );
+}
+
+.root[data-status="dead"] {
+  --app-terminal-glow: color-mix(
+    in srgb,
+    var(--app-status-dead) 16%,
+    transparent
+  );
 }
 
 .main {
+  position: relative;
+  z-index: 1;
   display: grid;
   align-items: center;
-  background: var(--app-surface-canvas);
+  background: transparent;
+}
+
+@media (max-width: 47.99em) {
+  .root::before,
+  .root::after {
+    display: none;
+  }
 }

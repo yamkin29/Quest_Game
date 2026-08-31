@@ -6,6 +6,7 @@ html {
   min-width: 320px;
   min-height: 100%;
   background: var(--app-surface-canvas);
+  color-scheme: light dark;
 }
 
 body {
@@ -13,9 +14,14 @@ body {
   margin: 0;
   background: var(--app-surface-canvas);
   color: var(--app-text-primary);
-  font-family: var(--font-inter);
+  font-family: var(--font-interface);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--app-accent-soft);
+  color: var(--app-text-primary);
 }
 
 button,
@@ -31,6 +37,7 @@ select {
 
 .mantine-focus-auto:focus-visible {
   outline-color: var(--app-accent-focus);
+  outline-offset: 3px;
 }
 
 .mantine-SegmentedControl-input[data-focus-ring="auto"]:focus-visible

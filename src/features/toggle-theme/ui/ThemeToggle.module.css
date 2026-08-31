@@ -1,5 +1,11 @@
 .root {
   flex: 0 0 auto;
+  color: var(--app-accent);
+  border-color: color-mix(
+    in srgb,
+    var(--app-accent) 26%,
+    var(--app-border-default)
+  );
 }
 
 .root svg {

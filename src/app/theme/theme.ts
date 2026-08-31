@@ -11,16 +11,16 @@ import {
 import classes from "./components.module.css";
 
 const signalColors = colorsTuple([
-  "#c1e1f7",
-  "#c1e1f7",
-  "#c1e1f7",
-  "#c1e1f7",
-  "#3ba6f1",
-  "#3ba6f1",
-  "#3ba6f1",
-  "#3398e1",
-  "#3398e1",
-  "#3398e1",
+  "#e8fbfe",
+  "#cef6fc",
+  "#a9edf7",
+  "#7ce1f1",
+  "#5ddcf1",
+  "#27b9d6",
+  "#159db9",
+  "#087f99",
+  "#09677c",
+  "#0b5364",
 ]);
 
 export const theme = createTheme({
@@ -99,7 +99,7 @@ export const theme = createTheme({
     }),
     Button: Button.extend({
       classNames: { root: classes.button },
-      defaultProps: { radius: "xl" },
+      defaultProps: { radius: "sm" },
     }),
     Paper: Paper.extend({
       classNames: { root: classes.paper },
@@ -111,7 +111,7 @@ export const theme = createTheme({
         label: classes.segmentedLabel,
         root: classes.segmentedRoot,
       },
-      defaultProps: { autoContrast: true, color: "signal", radius: "xl" },
+      defaultProps: { autoContrast: true, color: "signal", radius: "sm" },
     }),
     TextInput: TextInput.extend({
       classNames: { input: classes.textInput },

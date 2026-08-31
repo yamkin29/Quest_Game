@@ -41,11 +41,12 @@ export function ConsoleOutput({ messages, t }: ConsoleOutputProps) {
       viewportRef={viewportRef}
     >
       <Stack gap="var(--spacing-12)" p="var(--spacing-16)">
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <Text
             className={classes.message}
             component="p"
             data-kind={message.kind}
+            data-sequence={String(index + 1).padStart(2, "0")}
             key={message.id}
           >
             {t(message.key, message.params)}

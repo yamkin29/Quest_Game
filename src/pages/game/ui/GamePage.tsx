@@ -22,13 +22,15 @@ export function GamePage() {
     <AppShell
       className={classes.root}
       data-locale={locale}
-      footer={{ height: "var(--spacing-80)" }}
-      header={{ height: "var(--spacing-80)" }}
+      data-status={state.status}
+      footer={{ height: "var(--spacing-64)" }}
+      header={{ height: "var(--spacing-72)" }}
       padding={{ base: "var(--spacing-16)", sm: "var(--spacing-32)" }}
     >
       <Header
         locale={locale}
         onLocaleChange={setLocale}
+        status={state.status}
         statusLabel={t(statusKeys[state.status])}
         t={t}
       />

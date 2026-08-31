@@ -2,20 +2,47 @@
   --ai-bg: var(--app-surface-floating);
   --ai-hover: var(--app-accent-soft);
   --ai-color: var(--app-text-primary);
-  --ai-hover-color: var(--color-ink-black);
+  --ai-hover-color: var(--app-accent-hover);
 
   border-color: var(--app-border-default);
+  backdrop-filter: blur(12px);
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.actionIcon:hover {
+  border-color: var(--app-accent);
+  transform: translateY(-1px);
 }
 
 .button {
+  min-height: 36px;
+  font-family: var(--font-terminal);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-body-lg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
 .button[data-variant="filled"] {
   --button-bg: var(--app-accent);
   --button-hover: var(--app-accent-hover);
-  --button-color: var(--color-ink-black);
+  --button-color: var(--color-deep-space);
+
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--app-accent) 30%, transparent);
+}
+
+.button[data-variant="filled"]:hover {
+  box-shadow: var(--shadow-signal);
+  transform: translateY(-1px);
 }
 
 .paper {
@@ -24,26 +51,45 @@
 
 .segmentedRoot {
   border: thin solid var(--app-border-default);
-  background: var(--app-surface-canvas);
+  background: color-mix(in srgb, var(--app-surface-floating) 82%, transparent);
+  backdrop-filter: blur(12px);
 }
 
 .segmentedIndicator {
-  background: var(--app-accent);
-  box-shadow: var(--shadow-subtle);
+  background: var(--app-accent-soft);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--app-accent) 42%, transparent);
 }
 
 .segmentedLabel {
   color: var(--app-text-secondary);
+  font-family: var(--font-terminal);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .segmentedLabel[data-active] {
-  color: var(--color-ink-black);
+  color: var(--app-accent-hover);
 }
 
 .textInput {
   --input-bd: var(--app-border-strong);
   --input-bd-focus: var(--app-accent-focus);
-  --input-bg: var(--app-surface-floating);
+  --input-bg: color-mix(in srgb, var(--app-surface-floating) 86%, transparent);
   --input-color: var(--app-text-primary);
   --input-placeholder-color: var(--app-text-muted);
+
+  font-family: var(--font-terminal);
+  letter-spacing: 0.015em;
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.textInput:focus {
+  box-shadow: 0 0 0 3px var(--app-accent-soft);
 }

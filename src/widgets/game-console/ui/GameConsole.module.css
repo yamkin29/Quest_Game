@@ -1,55 +1,146 @@
 .window {
+  --console-status: var(--app-status-playing);
+
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: clamp(
-    calc(var(--spacing-160) * 2),
-    calc(100dvh - var(--spacing-160) - var(--spacing-64)),
-    calc(var(--spacing-160) * 4)
+    360px,
+    calc(100dvh - var(--spacing-72) - var(--spacing-64) - var(--spacing-64)),
+    680px
   );
   overflow: hidden;
-  background: var(--app-surface-card);
-  border-color: var(--app-border-default);
+  background: color-mix(in srgb, var(--app-surface-card) 94%, transparent);
+  border-color: color-mix(
+    in srgb,
+    var(--console-status) 24%,
+    var(--app-border-default)
+  );
+  backdrop-filter: blur(22px) saturate(120%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--console-status) 7%, transparent),
+    0 24px 72px rgba(3, 11, 15, 0.16),
+    0 0 54px color-mix(in srgb, var(--console-status) 6%, transparent);
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.window[data-status="won"] {
+  --console-status: var(--app-status-won);
+}
+
+.window[data-status="dead"] {
+  --console-status: var(--app-status-dead);
+}
+
+.window::before {
+  position: absolute;
+  top: 0;
+  right: var(--spacing-24);
+  left: var(--spacing-24);
+  z-index: 3;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--console-status) 18%,
+    var(--console-status) 82%,
+    transparent
+  );
+  box-shadow: 0 0 18px var(--console-status);
+  content: "";
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.window::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 4px,
+    color-mix(in srgb, var(--console-status) 3%, transparent) 5px
+  );
+  content: "";
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.windowHeader,
+.output,
+.form {
+  position: relative;
+  z-index: 1;
 }
 
 .windowHeader {
   flex: 0 0 auto;
   min-height: var(--spacing-48);
   padding-inline: var(--spacing-16);
+  background: color-mix(in srgb, var(--app-surface-floating) 64%, transparent);
 }
 
 .windowTitle {
   overflow: hidden;
   margin: 0;
   color: var(--app-text-primary);
-  font-family: var(--font-roobert);
+  font-family: var(--font-terminal);
   font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   line-height: var(--leading-caption);
-  letter-spacing: var(--tracking-body-lg);
+  letter-spacing: var(--tracking-caption);
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .indicator {
-  width: var(--spacing-8);
-  height: var(--spacing-8);
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--app-border-strong);
   border-radius: var(--radius-full);
-  background: var(--app-text-muted);
+  background: transparent;
 }
 
 .indicator[data-tone="soft"] {
-  background: var(--app-accent-soft);
+  border-color: transparent;
+  background: var(--app-text-muted);
+  opacity: 0.72;
 }
 
 .indicator[data-tone="signal"] {
-  background: var(--app-accent);
+  border-color: transparent;
+  background: var(--console-status);
+  box-shadow: 0 0 10px var(--console-status);
+}
+
+.windowStatus {
+  --badge-bg: color-mix(in srgb, var(--console-status) 12%, transparent);
+  --badge-color: var(--console-status);
+
+  flex: 0 0 auto;
+  border: 1px solid color-mix(in srgb, var(--console-status) 34%, transparent);
+  font-family: var(--font-terminal);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .output {
   flex: 1 1 auto;
   min-height: 0;
+  background-image:
+    linear-gradient(var(--app-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--app-grid-line) 1px, transparent 1px);
+  background-size:
+    var(--instrument-grid-size) var(--instrument-grid-size),
+    var(--instrument-grid-size) var(--instrument-grid-size);
 }
 
 .viewport {
@@ -57,17 +148,35 @@
 }
 
 .message {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: var(--spacing-12);
   margin: 0;
   color: var(--app-text-secondary);
-  font-family: var(--font-inter);
+  font-family: var(--font-terminal);
   font-size: var(--text-body-lg);
   line-height: var(--leading-body-lg);
   letter-spacing: var(--tracking-body-lg);
   white-space: pre-wrap;
 }
 
+.message::before {
+  color: var(--app-text-muted);
+  font-size: var(--text-caption);
+  letter-spacing: 0.04em;
+  content: attr(data-sequence);
+  opacity: 0.68;
+  transform: translateY(3px);
+}
+
 .message[data-kind="choice"] {
   color: var(--app-accent);
+}
+
+.message[data-kind="choice"]::before {
+  color: var(--app-accent);
+  content: ">";
+  opacity: 1;
 }
 
 .message[data-kind="input"] {
@@ -75,27 +184,94 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.message[data-kind="input"]::before {
+  color: var(--app-accent);
+  content: "IN";
+}
+
 .message[data-kind="system"] {
   color: var(--app-text-muted);
   font-style: italic;
 }
 
+.message[data-kind="system"]::before {
+  content: "SYS";
+}
+
 .message[data-kind="error"] {
-  color: var(--app-accent-hover);
+  color: var(--app-status-dead);
   font-weight: var(--font-weight-semibold);
+}
+
+.message[data-kind="error"]::before {
+  color: var(--app-status-dead);
+  content: "ERR";
 }
 
 .form {
   flex: 0 0 auto;
   padding: var(--spacing-16);
-  background: light-dark(var(--surface-floating-preview), var(--color-soot));
+  background: color-mix(in srgb, var(--app-surface-floating) 76%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.commandRow {
+  width: 100%;
 }
 
 .input {
-  flex: 1 1 auto;
+  flex: 1 1 260px;
   min-width: 0;
+}
+
+.input svg {
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+  color: var(--app-accent);
 }
 
 .actionButton {
   flex: 0 0 auto;
+  min-width: 132px;
+}
+
+.window :global(.mantine-Divider-root) {
+  border-color: color-mix(
+    in srgb,
+    var(--console-status) 14%,
+    var(--app-border-default)
+  );
+}
+
+@media (max-width: 35em) {
+  .window {
+    height: calc(
+      100dvh -
+      var(--spacing-72) -
+      var(--spacing-64) -
+      var(--spacing-32)
+    );
+    min-height: 0;
+  }
+
+  .windowStatus {
+    display: none;
+  }
+
+  .message {
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: var(--spacing-8);
+    font-size: 14px;
+  }
+
+  .actionButton {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .window,
+  .actionButton {
+    transition: none;
+  }
 }

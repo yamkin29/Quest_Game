@@ -30,6 +30,7 @@ export function ConsoleWindow({
       aria-labelledby="game-console-title"
       className={classes.window}
       component="section"
+      data-status={state.status}
       shadow="xl"
       withBorder
     >
@@ -53,7 +54,11 @@ export function ConsoleWindow({
           </Text>
         </Group>
 
-        <Badge color="signal" variant="light">
+        <Badge
+          className={classes.windowStatus}
+          data-status={state.status}
+          variant="light"
+        >
           {t(statusKeys[state.status])}
         </Badge>
       </Group>

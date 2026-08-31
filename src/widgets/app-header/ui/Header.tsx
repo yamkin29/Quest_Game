@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import { IconRocket } from "@tabler/icons-react";
 
+import type { GameStatus } from "@/entities/game";
 import { LanguageSwitcher } from "@/features/change-language";
 import { ThemeToggle } from "@/features/toggle-theme";
 import type { Locale, Translator } from "@/shared/i18n";
@@ -16,6 +17,7 @@ import classes from "./Header.module.css";
 interface HeaderProps {
   readonly locale: Locale;
   readonly onLocaleChange: (locale: Locale) => void;
+  readonly status: GameStatus;
   readonly statusLabel: string;
   readonly t: Translator;
 }
@@ -23,6 +25,7 @@ interface HeaderProps {
 export function Header({
   locale,
   onLocaleChange,
+  status,
   statusLabel,
   t,
 }: HeaderProps) {
@@ -36,7 +39,7 @@ export function Header({
               color="signal"
               radius="xs"
               size="var(--spacing-32)"
-              variant="light"
+              variant="outline"
             >
               <IconRocket aria-hidden="true" />
             </ThemeIcon>
@@ -51,7 +54,12 @@ export function Header({
             gap="var(--spacing-12)"
             wrap="nowrap"
           >
-            <Badge color="signal" variant="light" visibleFrom="sm">
+            <Badge
+              className={classes.status}
+              data-status={status}
+              variant="light"
+              visibleFrom="sm"
+            >
               {statusLabel}
             </Badge>
             <LanguageSwitcher locale={locale} onChange={onLocaleChange} t={t} />
