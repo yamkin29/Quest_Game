@@ -9,7 +9,7 @@ export const ru = {
   "header.status.playing": "Игра запущена",
   "header.status.won": "Победа",
   "header.status.dead": "Игра окончена",
-  "footer.description": "Создано на React и TypeScript.",
+  "footer.description": "Сделано с любовью — Yamkin Alexey.",
   "footer.copyright": "© {{year}} Quest Game",
   "console.title": "F-5 Starlight // Терминал",
   "console.historyLabel": "История игры",

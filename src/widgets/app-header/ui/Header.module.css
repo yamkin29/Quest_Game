@@ -35,15 +35,11 @@
 
 .icon {
   flex: 0 0 auto;
-  color: var(--app-accent);
-  border-color: color-mix(in srgb, var(--app-accent) 44%, transparent);
-  background: var(--app-accent-soft);
+  display: block;
+  width: var(--spacing-32);
+  height: var(--spacing-32);
+  border-radius: 7px;
   box-shadow: 0 0 20px color-mix(in srgb, var(--app-accent) 18%, transparent);
-}
-
-.icon svg {
-  width: var(--spacing-16);
-  height: var(--spacing-16);
 }
 
 .title {
@@ -57,30 +53,6 @@
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
-}
-
-.status {
-  --badge-bg: color-mix(in srgb, var(--status-color) 12%, transparent);
-  --badge-color: var(--status-color);
-
-  border: 1px solid color-mix(in srgb, var(--status-color) 34%, transparent);
-  font-family: var(--font-terminal);
-  font-size: 10px;
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.status[data-status="playing"] {
-  --status-color: var(--app-status-playing);
-}
-
-.status[data-status="won"] {
-  --status-color: var(--app-status-won);
-}
-
-.status[data-status="dead"] {
-  --status-color: var(--app-status-dead);
 }
 
 @media (max-width: 35em) {

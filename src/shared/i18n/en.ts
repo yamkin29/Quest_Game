@@ -9,7 +9,7 @@ export const en = {
   "header.status.playing": "Game running",
   "header.status.won": "Victory",
   "header.status.dead": "Game over",
-  "footer.description": "Built with React and TypeScript.",
+  "footer.description": "Made with love by Yamkin Alexey.",
   "footer.copyright": "© {{year}} Quest Game",
   "console.title": "F-5 Starlight // Terminal",
   "console.historyLabel": "Game history",

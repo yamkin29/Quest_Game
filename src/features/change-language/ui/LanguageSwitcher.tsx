@@ -1,6 +1,6 @@
 import { SegmentedControl } from "@mantine/core";
 
-import type { InterfaceMessageKey, Locale, Translator } from "@/shared/i18n";
+import type { Locale, Translator } from "@/shared/i18n";
 import classes from "./LanguageSwitcher.module.css";
 
 const segmentedControlClassNames = {
@@ -12,10 +12,10 @@ const segmentedControlClassNames = {
 } as const;
 
 const localeOptions = [
-  { labelKey: "locale.ru", value: "ru" },
-  { labelKey: "locale.en", value: "en" },
+  { label: "ru", value: "ru" },
+  { label: "en", value: "en" },
 ] satisfies readonly {
-  readonly labelKey: InterfaceMessageKey;
+  readonly label: Locale;
   readonly value: Locale;
 }[];
 
@@ -34,10 +34,7 @@ export function LanguageSwitcher({
     <SegmentedControl<Locale>
       aria-label={t("locale.label")}
       classNames={segmentedControlClassNames}
-      data={localeOptions.map(({ labelKey, value }) => ({
-        label: t(labelKey),
-        value,
-      }))}
+      data={localeOptions}
       name="quest-game-locale"
       onChange={onChange}
       size="xs"
