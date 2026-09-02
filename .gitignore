@@ -3,3 +3,4 @@ dist/
 *.tsbuildinfo
 .idea/
 .DS_Store
+docs/
