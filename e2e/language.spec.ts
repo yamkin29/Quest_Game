@@ -10,7 +10,7 @@ test("switches language and persists it across reloads", async ({ page }) => {
     page.getByRole("heading", { name: en["console.title"] }),
   ).toBeVisible();
 
-  await page.getByText("ru", { exact: true }).click();
+  await page.getByText("Русский", { exact: true }).click();
 
   await expect(
     page.getByRole("heading", { name: ru["console.title"] }),
@@ -22,7 +22,7 @@ test("switches language and persists it across reloads", async ({ page }) => {
     page.getByRole("heading", { name: ru["console.title"] }),
   ).toBeVisible();
 
-  await page.getByText("en", { exact: true }).click();
+  await page.getByText("English", { exact: true }).click();
 
   await expect(
     page.getByRole("heading", { name: en["console.title"] }),

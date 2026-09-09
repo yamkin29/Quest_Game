@@ -111,9 +111,10 @@ export const en = {
     "An unpleasant sensation...\nYour face shivers as cold drops strike your skin.\nYou open your eyes beneath the grey sky of your home city. The rain is steadily growing heavier.\nIt was all a dream... nothing more than a dream.\n‘Albert, there is no signal! Keep the coupling steady!’ someone shouts from your right.",
 
   "input.command": "> {{value}}",
-  "system.restartAvailable": "The game is over. Enter restart to play again.",
+  "system.restartAvailable":
+    "The game is over. Press the button below to play again.",
   "error.invalidChoice": "Invalid choice. Available options: {{options}}.",
   "error.incorrectRiddleAnswer": "That is not the correct word. Try again.",
   "error.gameFinished":
-    "The game is already over. Enter restart to play again.",
+    "The game is already over. Press the button below to play again.",
 } satisfies TranslationDictionary;

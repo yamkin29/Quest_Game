@@ -11,14 +11,6 @@ const segmentedControlClassNames = {
   root: classes.root,
 } as const;
 
-const localeOptions = [
-  { label: "ru", value: "ru" },
-  { label: "en", value: "en" },
-] satisfies readonly {
-  readonly label: Locale;
-  readonly value: Locale;
-}[];
-
 interface LanguageSwitcherProps {
   readonly locale: Locale;
   readonly onChange: (locale: Locale) => void;
@@ -30,6 +22,16 @@ export function LanguageSwitcher({
   onChange,
   t,
 }: LanguageSwitcherProps) {
+  // Option labels come from the dictionaries, which keep native names
+  // ("Русский" / "English") in both locales.
+  const localeOptions: {
+    readonly label: string;
+    readonly value: Locale;
+  }[] = [
+    { label: t("locale.ru"), value: "ru" },
+    { label: t("locale.en"), value: "en" },
+  ];
+
   return (
     <SegmentedControl<Locale>
       aria-label={t("locale.label")}

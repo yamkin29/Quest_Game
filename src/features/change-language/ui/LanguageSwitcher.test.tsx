@@ -19,8 +19,8 @@ describe("LanguageSwitcher", () => {
     const group = screen.getByRole("radiogroup", { name: t("locale.label") });
 
     expect(group).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "ru" })).toBeChecked();
-    expect(screen.getByRole("radio", { name: "en" })).not.toBeChecked();
+    expect(screen.getByRole("radio", { name: "Русский" })).toBeChecked();
+    expect(screen.getByRole("radio", { name: "English" })).not.toBeChecked();
   });
 
   it("reports the chosen locale upward", async () => {
@@ -30,7 +30,7 @@ describe("LanguageSwitcher", () => {
       <LanguageSwitcher locale="ru" onChange={onChange} t={t} />,
     );
 
-    await user.click(screen.getByText("en"));
+    await user.click(screen.getByText("English"));
 
     expect(onChange).toHaveBeenCalledWith("en");
   });

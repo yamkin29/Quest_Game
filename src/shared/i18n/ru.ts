@@ -111,9 +111,9 @@ export const ru = {
 
   "input.command": "> {{value}}",
   "system.restartAvailable":
-    "Игра завершена. Введи restart, чтобы начать заново.",
+    "Игра завершена. Нажми кнопку ниже, чтобы начать заново.",
   "error.invalidChoice": "Неверная опция. Доступные варианты: {{options}}.",
   "error.incorrectRiddleAnswer": "Неверное слово, попробуй ещё раз.",
   "error.gameFinished":
-    "Игра уже завершена. Введи restart, чтобы начать заново.",
+    "Игра уже завершена. Нажми кнопку ниже, чтобы начать заново.",
 } satisfies TranslationDictionary;

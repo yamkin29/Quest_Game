@@ -78,7 +78,7 @@ describe("GamePage", () => {
     const user = userEvent.setup();
     renderWithProviders(<GamePage />);
 
-    await user.click(screen.getByText("ru"));
+    await user.click(screen.getByText("Русский"));
 
     expect(
       screen.getByRole("heading", { name: ru["console.title"] }),
@@ -94,7 +94,7 @@ describe("GamePage", () => {
     const user = userEvent.setup();
     const firstMount = renderWithProviders(<GamePage />);
 
-    await user.click(screen.getByText("ru"));
+    await user.click(screen.getByText("Русский"));
     firstMount.unmount();
 
     renderWithProviders(<GamePage />);

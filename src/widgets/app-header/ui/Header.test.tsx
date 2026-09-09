@@ -37,8 +37,8 @@ describe("Header", () => {
     const slot = document.querySelector<HTMLElement>("[data-settings-slot]");
 
     expect(slot).not.toBeNull();
-    expect(slot).toHaveTextContent("ru");
-    expect(slot).toHaveTextContent("en");
+    expect(slot).toHaveTextContent("Русский");
+    expect(slot).toHaveTextContent("English");
     expect(
       slot?.querySelector(`[aria-label="${t("theme.switchToDark")}"]`),
     ).not.toBeNull();
@@ -48,7 +48,7 @@ describe("Header", () => {
     const user = userEvent.setup();
     const onLocaleChange = renderHeader();
 
-    await user.click(screen.getByText("en"));
+    await user.click(screen.getByText("English"));
 
     expect(onLocaleChange).toHaveBeenCalledWith("en");
   });
