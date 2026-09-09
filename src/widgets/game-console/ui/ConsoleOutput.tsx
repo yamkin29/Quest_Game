@@ -37,6 +37,8 @@ export function ConsoleOutput({ messages, t }: ConsoleOutputProps) {
         "aria-live": "polite",
         "aria-relevant": "additions text",
         role: "log",
+        // Keyboard users must be able to scroll the game history.
+        tabIndex: 0,
       }}
       viewportRef={viewportRef}
     >

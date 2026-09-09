@@ -13,6 +13,17 @@ export default defineConfig({
   test: {
     environment: "node",
     setupFiles: ["./src/app/tests/setup.ts"],
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/package.json/**",
+      "**/cypress/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*",
+      "e2e/**",
+      "playwright-report/**",
+      "test-results/**",
+    ],
     coverage: {
       provider: "v8",
       include: ["src/**/*.{ts,tsx}"],
@@ -26,6 +37,10 @@ export default defineConfig({
         "src/app/entrypoint/**",
       ],
       thresholds: {
+        statements: 90,
+        branches: 85,
+        functions: 90,
+        lines: 90,
         "src/entities/**": {
           statements: 85,
           branches: 85,
