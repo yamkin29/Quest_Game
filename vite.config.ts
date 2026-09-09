@@ -15,8 +15,35 @@ export default defineConfig({
     setupFiles: ["./src/app/tests/setup.ts"],
     coverage: {
       provider: "v8",
-      include: ["src/**"],
-      exclude: ["src/**/tests/**", "src/**/*.test.*", "src/**/testing.ts"],
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "src/**/tests/**",
+        "src/**/*.test.*",
+        "src/**/testing.ts",
+        "**/*.css",
+        "**/types.ts",
+        "**/index.ts",
+        "src/app/entrypoint/**",
+      ],
+      thresholds: {
+        "src/entities/**": {
+          statements: 85,
+          branches: 85,
+          functions: 85,
+          lines: 85,
+        },
+        "src/shared/**": {
+          statements: 85,
+          branches: 80,
+          functions: 85,
+          lines: 85,
+        },
+        "src/app/theme/colorSchemeManager.ts": { statements: 100, lines: 100 },
+        "src/app/theme/cssVariablesResolver.ts": {
+          statements: 100,
+          lines: 100,
+        },
+      },
     },
   },
 });

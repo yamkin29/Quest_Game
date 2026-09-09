@@ -149,6 +149,67 @@ describe("game engine", () => {
   });
 });
 
+describe("engine input validation", () => {
+  it("accepts a choice padded with whitespace", () => {
+    const state = choose(reachStarship(), " 1 ");
+
+    expect(state.room).toBe("temple");
+  });
+
+  it("rejects malformed choices without changing progress", () => {
+    for (const command of ["abc", "1.5", "2.0", "-1", "0", ""]) {
+      const state = reachStarship();
+      const nextState = submitCommand(state, command);
+
+      expect(getProgress(nextState)).toEqual(getProgress(state));
+      expect(nextState.messages.at(-1)).toMatchObject({
+        key: "error.invalidChoice",
+        params: { options: "1" },
+      });
+      expect(nextState.nextMessageId).toBe(nextState.messages.length + 1);
+    }
+  });
+
+  it("accepts the riddle answer regardless of case and spacing", () => {
+    for (const answer of ["отражение", " Reflection ", "ОТРАЖЕНИЕ"]) {
+      const nextState = submitCommand(reachRiddle(), answer);
+
+      expect(nextState.room).toBe("otherShip");
+      expect(nextState.inputMode).toBe("continue");
+      expect(nextState.messages.at(-1)?.key).toBe("riddle.solved");
+    }
+  });
+
+  it("restarts a finished game with a padded restart command", () => {
+    const deadState = choose(reachDangerRoom(), "3");
+
+    expect(submitCommand(deadState, "  restart  ")).toEqual(
+      createInitialGameState(),
+    );
+  });
+
+  it("logs the echoed input and an error once the game is finished", () => {
+    const deadState = choose(reachDangerRoom(), "3");
+    const nextState = submitCommand(deadState, "hello");
+
+    expect(nextState.status).toBe("dead");
+    expect(nextState.messages.at(-2)).toMatchObject({
+      key: "input.command",
+      params: { value: "hello" },
+    });
+    expect(nextState.messages.at(-1)?.key).toBe("error.gameFinished");
+  });
+
+  it("keeps the previous state object untouched by invalid input", () => {
+    const state = reachStarship();
+
+    submitCommand(state, "not-a-choice");
+
+    expect(state.inputMode).toBe("choice");
+    expect(state.messages).toHaveLength(9);
+  });
+});
+
 function reachStarship(): GameState {
   let state = createInitialGameState();
 
