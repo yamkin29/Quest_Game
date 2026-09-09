@@ -43,7 +43,8 @@ export function ThemeToggle({ t }: ThemeToggleProps) {
         aria-label={label}
         className={classes.root}
         onClick={handleToggle}
-        size="input-xs"
+        radius="xl"
+        size={32}
         variant="default"
       >
         {isDark ? (

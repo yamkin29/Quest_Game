@@ -1,0 +1,11 @@
+import { type RenderOptions, render } from "@testing-library/react";
+import type { ReactElement } from "react";
+
+import { AppProviders } from "../providers/AppProviders";
+
+export function renderWithProviders(
+  ui: ReactElement,
+  options: Omit<RenderOptions, "wrapper"> = {},
+) {
+  return render(ui, { wrapper: AppProviders, ...options });
+}

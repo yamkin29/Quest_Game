@@ -1,4 +1,15 @@
+import { cleanup } from "@testing-library/react";
+import { afterEach } from "vitest";
+
 import "@testing-library/jest-dom/vitest";
+
+// RTL registers auto-cleanup through the global afterEach, which does not
+// exist unless vitest globals are enabled.
+afterEach(() => {
+  if (typeof window !== "undefined") {
+    cleanup();
+  }
+});
 
 // React reports warnings through console.error; turn them into hard failures
 // so component tests cannot pass with rendering problems.
