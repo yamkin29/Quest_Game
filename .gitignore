@@ -6,7 +6,10 @@ dist/
 dist-ssr/
 *.tsbuildinfo
 
-# Local env files
+# Local env files & secrets (example file stays visible)
+.env
+.env.*
+!.env.example
 *.local
 
 # Logs
@@ -21,6 +24,7 @@ lerna-debug.log*
 # Tests & coverage
 coverage/
 test-results/
+blob-report/
 playwright-report/
 
 # Local docs
