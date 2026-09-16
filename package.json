@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "check": "biome check . && tsc -b --pretty false",
     "check:fix": "biome check --write .",
+    "check:react": "npx -y react-doctor@latest",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
