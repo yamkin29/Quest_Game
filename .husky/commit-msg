@@ -1,0 +1,2 @@
+# Проверка формата Conventional Commits
+npx --no -- commitlint --edit "$1"

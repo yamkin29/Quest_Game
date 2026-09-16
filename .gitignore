@@ -1,9 +1,43 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+dist-ssr/
 *.tsbuildinfo
-.idea/
-.DS_Store
-docs/
+
+# Local env files
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Tests & coverage
 coverage/
 test-results/
 playwright-report/
+
+# Local docs
+/development_plans/
+
+# Editor directories and files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+
+# Husky generated files
+.husky/_/
