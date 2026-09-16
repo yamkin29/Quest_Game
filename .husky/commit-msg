@@ -1,2 +1,2 @@
-# Проверка формата Conventional Commits
+# Validate the Conventional Commits format
 npx --no -- commitlint --edit "$1"

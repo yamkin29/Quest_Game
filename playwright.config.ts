@@ -8,7 +8,7 @@ export default defineConfig({
   reporter: process.env.CI ? [["html"], ["github"]] : [["list"]],
   use: {
     baseURL: "http://localhost:4173",
-    locale: "en-US", // фиксируем локаль: дефолтные тексты интерфейса — английские
+    locale: "en-US", // pin the locale: default UI texts are English
     trace: "on-first-retry",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],

@@ -1,5 +1,5 @@
 // Conventional Commits: <type>(<scope>): <description>
-// Типы и правила соответствуют разделу Git в AGENTS.md
+// Types and rules follow the Git section of AGENTS.md
 const config = {
   extends: ["@commitlint/config-conventional"],
 };

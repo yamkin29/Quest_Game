@@ -7,6 +7,10 @@
 3. Для сложных задач подключены user-скиллы: `mantine-form` (формы и валидация на `@mantine/form`), `mantine-combobox` (селекты и автокомплиты на Combobox), `mantine-custom-components` (кастомные компоненты через factory/Styles API).
 4. Если MCP-инструменты `mantine` недоступны в сессии — fallback: типы в `node_modules/@mantine/core`, сайт [mantine.dev](https://mantine.dev) и [llms.txt](https://mantine.dev/llms.txt). Всегда учитываем, что в проекте Mantine v9.
 
+## Код
+
+1. Все комментарии — на английском языке, включая конфиги и скрипты: `//`, `/* ... */`, JSDoc и JSX в коде, `#` в shell-скриптах (`.husky/`) и YAML (`.github/`). Это не касается строк пользовательского контента: русский текст в словаре локали `src/shared/i18n/ru.ts` — часть продукта, а не комментарий.
+
 ## Git: организация и коммиты
 
 ### Организация изменений
