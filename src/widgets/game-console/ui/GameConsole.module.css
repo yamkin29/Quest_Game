@@ -135,12 +135,6 @@
 .output {
   flex: 1 1 auto;
   min-height: 0;
-  background-image:
-    linear-gradient(var(--app-grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--app-grid-line) 1px, transparent 1px);
-  background-size:
-    var(--instrument-grid-size) var(--instrument-grid-size),
-    var(--instrument-grid-size) var(--instrument-grid-size);
 }
 
 .viewport {

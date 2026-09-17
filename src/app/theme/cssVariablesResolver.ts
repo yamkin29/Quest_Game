@@ -23,7 +23,6 @@ export const cssVariablesResolver: CSSVariablesResolver = () => ({
     "--app-status-playing": "var(--color-signal-dark)",
     "--app-status-won": "var(--color-success)",
     "--app-status-dead": "var(--color-danger)",
-    "--app-grid-line": "rgba(16, 33, 41, 0.055)",
     "--app-terminal-glow": "rgba(39, 185, 214, 0.12)",
   },
   dark: {
@@ -43,7 +42,6 @@ export const cssVariablesResolver: CSSVariablesResolver = () => ({
     "--app-status-playing": "var(--color-signal-bright)",
     "--app-status-won": "var(--color-success-bright)",
     "--app-status-dead": "var(--color-danger-bright)",
-    "--app-grid-line": "rgba(93, 220, 241, 0.05)",
     "--app-terminal-glow": "rgba(93, 220, 241, 0.1)",
   },
 });

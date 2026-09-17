@@ -26,7 +26,6 @@ const surfaceVariables = [
   "--app-status-playing",
   "--app-status-won",
   "--app-status-dead",
-  "--app-grid-line",
   "--app-terminal-glow",
 ];
 
