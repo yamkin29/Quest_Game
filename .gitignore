@@ -30,6 +30,9 @@ playwright-report/
 # Local docs
 /development_plans/
 
+# ZCode workspace (session plans, not part of the repo)
+.zcode/
+
 # Editor directories and files
 .idea/
 .vscode/*
